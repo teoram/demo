@@ -33,10 +33,10 @@ public class TwitterMongoDB {
 	  static {  
 	    cb = new ConfigurationBuilder();  
 	    cb.setDebugEnabled(true);  
-	    cb.setOAuthConsumerKey("1HrWSchAql1Byhqk3izXPjLSa");  
-	    cb.setOAuthConsumerSecret("MTObW6KaWP1rHnaQIiO4d09T3BvSOJ8IQY03cK2ZhxCjQLx9Ou");  
-	    cb.setOAuthAccessToken("474313291-vXas8qby0TFRs4wm1ryZ3Uzxvt3c1na0KZsvhnUo");  
-	    cb.setOAuthAccessTokenSecret("5CSvOUUltpsg6KyuBnI6SnDiPNNfTu4yML1OAaP64VVgf");  
+	    cb.setOAuthConsumerKey("consumer_key");  
+	    cb.setOAuthConsumerSecret("consumer_secret");  
+	    cb.setOAuthAccessToken("access_token");  
+	    cb.setOAuthAccessTokenSecret("access_token_secret");  
 	  }    
 	  
 	  public TwitterMongoDB() {  
@@ -112,14 +112,7 @@ public class TwitterMongoDB {
 	        List<Status> tweets = result.getTweets();  
 	        for (Status tweet : tweets) {  
 	          BasicDBObject basicObj = new BasicDBObject();  
-	          basicObj.put("user_name", tweet.getUser().getScreenName());  
-	          basicObj.put("retweet_count", tweet.getRetweetCount());  
-	          basicObj.put("tweet_followers_count",  
-	              tweet.getUser().getFollowersCount());  
-	          UserMentionEntity[] mentioned = tweet.getUserMentionEntities();  
-	          basicObj.put("tweet_mentioned_count", mentioned.length);  
-	          basicObj.put("tweet_ID", tweet.getId());  
-	          basicObj.put("tweet_text", tweet.getText());  
+	          
 	          
 	          try {  
 	            items.insert(basicObj);  
